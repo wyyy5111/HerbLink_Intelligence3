@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>客户端 · 首页 · 关注 | 本草智链二级页面</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Urbanist:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/menu-detail.css" />
+  </head>
+  <body data-module-key="client-home-following">
+    <div class="detail-bg" aria-hidden="true">
+      <canvas id="detail-particles"></canvas>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header class="detail-nav">
+      <div class="wrap nav-inner">
+        <a class="nav-brand" href="/index.html">
+          <i aria-hidden="true"></i>
+          <span>本草智链 3.0</span>
+        </a>
+        <div class="nav-links">
+          <span class="nav-link" id="nav-current">--</span>
+          <a class="nav-link" href="/index.html#menu-lab">演示总览</a>
+          <a class="nav-link accent" href="/index.html#matrix">菜单矩阵</a>
+          <a class="nav-link" id="nav-prev" href="#" hidden>上一模块</a>
+          <a class="nav-link" id="nav-next" href="#" hidden>下一模块</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="detail-main wrap">
+      <section class="card detail-hero">
+        <div class="hero-top">
+          <span class="badge" id="detail-badge">--</span>
+          <a class="nav-link" href="/index.html#menu-lab">返回交互演示</a>
+        </div>
+        <h1 class="hero-title" id="detail-title">--</h1>
+        <p class="hero-summary" id="detail-summary">--</p>
+        <div class="kpi-grid" id="detail-kpis"></div>
+      </section>
+
+
+      <section class="card section-card" id="mobile-preview-section" hidden>
+        <h2 class="section-title" id="mobile-preview-title">首页移动布局</h2>
+        <p class="section-sub">顶部四入口 + 底部五入口 + 直播视频流，模拟真实手机端交互。</p>
+
+        <div class="mobile-preview">
+          <div class="preview-grid top" id="mobile-top-grid"></div>
+          <div class="preview-grid bottom" id="mobile-bottom-grid"></div>
+          <div class="preview-feed" id="mobile-preview-feed"></div>
+        </div>
+      </section>
+
+      <div class="layout-grid">
+        <section class="card section-card">
+          <h2 class="section-title">三级功能清单</h2>
+          <p class="section-sub">每个三级功能都可运行虚拟演示，展示真实业务链路。</p>
+          <div class="cap-grid" id="detail-capabilities"></div>
+        </section>
+
+        <section class="card section-card digital-stage">
+          <div class="stage-head">
+            <span>数字孪生终端</span>
+            <span class="status-dot">实时日志</span>
+          </div>
+          <div class="terminal">
+            <div class="terminal-top">
+              <span id="terminal-title">--</span>
+              <span id="terminal-clock">RUNNING</span>
+            </div>
+            <div class="terminal-feed" id="terminal-feed"></div>
+          </div>
+
+          <div class="score-grid">
+            <div class="score-gauge">
+              <div>
+                <strong id="run-score">--</strong>
+                <span>演示评分</span>
+              </div>
+            </div>
+            <div class="score-bars" id="score-bars"></div>
+          </div>
+
+          <div class="scene-box">
+            <strong>核心场景</strong>
+            <span id="detail-scene">--</span>
+          </div>
+        </section>
+      </div>
+
+      <div class="layout-grid">
+        <section class="card section-card">
+          <h2 class="section-title">执行面板</h2>
+          <p class="section-sub">输入、输出、风控规则同步演示，支持即时回放。</p>
+
+          <div class="scene-box">
+            <strong id="run-title">等待运行演示</strong>
+          </div>
+
+          <div class="run-grid">
+            <div class="scene-box">
+              <strong>输入</strong>
+              <ul id="run-input"></ul>
+            </div>
+            <div class="scene-box">
+              <strong>输出</strong>
+              <ul id="run-output"></ul>
+            </div>
+          </div>
+
+          <div class="scene-box" style="margin-top: 8px;">
+            <strong>风控规则</strong>
+            <span id="run-risk">--</span>
+          </div>
+
+          <div class="risk-tags" id="risk-tags"></div>
+
+          <div class="spark-wrap">
+            <canvas id="run-spark" width="520" height="120" aria-label="模块运行趋势"></canvas>
+          </div>
+        </section>
+
+        <section class="card section-card">
+          <h2 class="section-title">流程与运行日志</h2>
+          <p class="section-sub">核心流程高亮回放，日志链路完整留痕。</p>
+          <ol class="workflow" id="detail-workflow"></ol>
+          <div class="log-box" id="detail-log"></div>
+        </section>
+      </div>
+
+      <section class="card section-card" id="contact-section" hidden>
+        <h2 class="section-title">各地政府 + 监管单位电话及邮箱</h2>
+        <p class="section-sub">用于异常批次、合规核查与应急协同的官方联络信息。</p>
+        <div class="contact-wrap">
+          <table class="contact-table">
+            <thead>
+              <tr>
+                <th>单位</th>
+                <th>电话</th>
+                <th>邮箱</th>
+                <th>协同职责</th>
+              </tr>
+            </thead>
+            <tbody id="contact-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card section-card">
+        <h2 class="section-title">同端模块跳转</h2>
+        <p class="section-sub">保持答辩/路演节奏，快速切换同端模块。</p>
+        <div class="related-grid" id="related-grid"></div>
+      </section>
+    </main>
+
+    <footer class="detail-footer">
+      <div class="wrap footer-card">
+        <div>
+          <strong>本草智链二级模块展示页</strong>
+          <span>统一视觉系统 + 统一数据驱动 + 统一交互演示。</span>
+        </div>
+        <a href="/index.html#matrix">返回矩阵</a>
+      </div>
+    </footer>
+
+    <script src="/menu-data.js"></script>
+    <script src="/menu-detail.js"></script>
+  </body>
+</html>

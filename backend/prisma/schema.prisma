@@ -1,0 +1,282 @@
+// Prisma Schema for Bencao Zhilian
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User Model
+model User {
+  id           String    @id @default(uuid())
+  phone        String    @unique
+  passwordHash String    @map("password_hash")
+  role         UserRole  @default(CUSTOMER)
+  nickname     String?
+  avatarUrl    String?   @map("avatar_url")
+  status       UserStatus @default(ACTIVE)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  farms        Farm[]
+  orders       Order[]
+  farmAdoptions FarmAdoption[]
+  livestreams  Livestream[]
+  courses      Course[]
+
+  @@map("users")
+}
+
+enum UserRole {
+  CUSTOMER
+  FARMER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  BANNED
+}
+
+// Farm Model
+model Farm {
+  id             String    @id @default(uuid())
+  userId         String    @map("user_id")
+  name           String
+  location       String
+  province       String?
+  city           String?
+  latitude       Float?
+  longitude      Float?
+  areaSize       Float?     @map("area_size")
+  certifications Json?
+  status         FarmStatus @default(ACTIVE)
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  user           User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products       Product[]
+  monitoringData FarmMonitoring[]
+  farmAdoptions  FarmAdoption[]
+
+  @@map("farms")
+}
+
+enum FarmStatus {
+  ACTIVE
+  INACTIVE
+}
+
+// Product Model
+model Product {
+  id            String   @id @default(uuid())
+  farmId        String   @map("farm_id")
+  name          String
+  category      String?
+  description   String?
+  price         Float
+  unit          String   @default("公斤")
+  stockQuantity Float?    @map("stock_quantity")
+  grade         String?
+  isOrganic     Boolean  @default(false) @map("is_organic")
+  traceCode     String?  @unique @map("trace_code")
+  imageUrls     Json     @map("image_urls")
+  videoUrl      String?  @map("video_url")
+  metadata      Json?
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  // Relations
+  farm                Farm               @relation(fields: [farmId], references: [id], onDelete: Cascade)
+  orderItems          OrderItem[]
+  traceabilityRecords TraceabilityRecord[]
+
+  @@map("products")
+}
+
+// Order Model
+model Order {
+  id             String      @id @default(uuid())
+  userId         String      @map("user_id")
+  orderNo        String      @unique @map("order_no")
+  status         OrderStatus @default(PENDING)
+  totalAmount    Float       @map("total_amount")
+  paymentMethod  String?     @map("payment_method")
+  paymentTime    DateTime?   @map("payment_time")
+  shippingAddress Json?      @map("shipping_address")
+  trackingNumber String?     @map("tracking_number")
+  createdAt      DateTime    @default(now()) @map("created_at")
+  updatedAt      DateTime    @updatedAt @map("updated_at")
+
+  // Relations
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items      OrderItem[]
+
+  @@map("orders")
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+// Order Item Model
+model OrderItem {
+  id          String   @id @default(uuid())
+  orderId     String   @map("order_id")
+  productId   String   @map("product_id")
+  productName String   @map("product_name")
+  quantity    Float
+  unitPrice   Float    @map("unit_price")
+  subtotal    Float
+
+  // Relations
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@map("order_items")
+}
+
+// Market Price Model
+model MarketPrice {
+  id           String   @id @default(uuid())
+  productName  String   @map("product_name")
+  region       String
+  price        Float
+  volume       Float?
+  changePercent Float?    @map("change_percent")
+  recordedAt   DateTime @default(now()) @map("recorded_at")
+
+  @@map("market_prices")
+}
+
+// Traceability Record Model
+model TraceabilityRecord {
+  id        String   @id @default(uuid())
+  productId String   @map("product_id")
+  stage     String
+  location  String?
+  operator  String?
+  data      Json?
+  images    Json?
+  recordedAt DateTime @default(now()) @map("recorded_at")
+
+  // Relations
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("traceability_records")
+}
+
+// Farm Monitoring Model
+model FarmMonitoring {
+  id              String          @id @default(uuid())
+  farmId          String          @map("farm_id")
+  soilHumidity    Float?          @map("soil_humidity")
+  soilTemperature Float?          @map("soil_temperature")
+  airTemperature  Float?          @map("air_temperature")
+  airHumidity     Float?          @map("air_humidity")
+  pestRisk        PestRisk        @map("pest_risk") @default(LOW)
+  alertLevel      AlertLevel      @map("alert_level") @default(NORMAL)
+  recordedAt      DateTime        @default(now()) @map("recorded_at")
+
+  // Relations
+  farm Farm @relation(fields: [farmId], references: [id], onDelete: Cascade)
+
+  @@map("farm_monitoring")
+}
+
+enum PestRisk {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum AlertLevel {
+  NORMAL
+  WARNING
+  CRITICAL
+}
+
+// Course Model
+model Course {
+  id             String    @id @default(uuid())
+  title          String
+  description    String?
+  category       String?
+  instructorId   String    @map("instructor_id")
+  thumbnailUrl   String?   @map("thumbnail_url")
+  videoUrl       String?   @map("video_url")
+  duration       Int?
+  isLive         Boolean    @default(false) @map("is_live")
+  liveStartTime  String?
+  price          Float     @default(0)
+  viewCount      Int       @default(0) @map("view_count")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  // Relations
+  instructor User @relation(fields: [instructorId], references: [id], onDelete: Cascade)
+
+  @@map("courses")
+}
+
+// Livestream Model
+model Livestream {
+  id          String            @id @default(uuid())
+  userId      String            @map("user_id")
+  title       String
+  description String?
+  thumbnailUrl String?          @map("thumbnail_url")
+  streamUrl   String?           @map("stream_url")
+  status      LivestreamStatus  @default(SCHEDULED)
+  startTime   DateTime?         @map("start_time")
+  endTime     DateTime?         @map("end_time")
+  viewerCount Int               @default(0) @map("viewer_count")
+  salesAmount Float             @default(0) @map("sales_amount")
+  createdAt   DateTime          @default(now()) @map("created_at")
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("livestreams")
+}
+
+enum LivestreamStatus {
+  SCHEDULED
+  LIVE
+  ENDED
+  CANCELLED
+}
+
+// Farm Adoption Model
+model FarmAdoption {
+  id           String         @id @default(uuid())
+  farmId       String         @map("farm_id")
+  userId       String         @map("user_id")
+  adoptionType String         @map("adoption_type")
+  areaSize     Float?         @map("area_size")
+  startDate    String         @map("start_date") // ISO date string
+  endDate      String         @map("end_date")   // ISO date string
+  totalAmount  Float          @map("total_amount")
+  status       AdoptionStatus @default(ACTIVE)
+  createdAt    DateTime       @default(now()) @map("created_at")
+
+  // Relations
+  farm Farm @relation(fields: [farmId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("farm_adoptions")
+}
+
+enum AdoptionStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}

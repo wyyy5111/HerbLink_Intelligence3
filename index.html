@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="本草智链移动端应用展示：农户端与客户端统一交互、星云入口、极速检索与全功能介绍。"
+    />
+    <title>本草智链 | 移动应用展示</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Urbanist:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/flagship.css" />
+  </head>
+  <body>
+    <div class="farm-bg" aria-hidden="true">
+      <span class="aura aura-a"></span>
+      <span class="aura aura-b"></span>
+      <span class="aura aura-c"></span>
+      <span class="terrain terrain-a"></span>
+      <span class="terrain terrain-b"></span>
+      <span class="terrain terrain-c"></span>
+      <span class="grain"></span>
+    </div>
+
+    <div class="launch-screen" id="launch-screen" aria-hidden="true">
+      <div class="launch-card">
+        <div class="launch-brand">
+          <span class="launch-mark"></span>
+          <div>
+            <strong>本草智链</strong>
+            <span>旗舰企业版 · Enterprise</span>
+          </div>
+        </div>
+        <p>正在同步实时产区、交易链路与监管协同数据</p>
+        <div class="launch-progress">
+          <span id="launch-progress-bar"></span>
+        </div>
+        <div class="launch-meta">
+          <span id="launch-progress-text">0%</span>
+          <span id="launch-phase">初始化中...</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-wrap">
+      <article class="phone-app" aria-label="本草智链移动应用">
+        <header class="app-header">
+          <div class="status-row">
+            <span id="status-time">--:--</span>
+            <div class="status-icons" aria-hidden="true">
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+          </div>
+
+          <div class="brand-row">
+            <div class="brand">
+              <span class="brand-mark" aria-hidden="true"></span>
+              <div>
+                <strong>本草智链</strong>
+                <span id="platform-subtitle">农户端工作台</span>
+              </div>
+            </div>
+            <div class="platform-toggle" id="platform-toggle" aria-label="端口切换"></div>
+          </div>
+
+          <label class="search-box" for="quick-search">
+            <span aria-hidden="true">🔎</span>
+            <input id="quick-search" type="search" placeholder="搜索功能，例如：物流、AI入口、认领农场" autocomplete="off" />
+          </label>
+          <div class="search-results" id="search-results" hidden></div>
+
+          <div class="brand-ribbon">
+            <span class="badge">旗舰企业版</span>
+            <span id="brand-date">--</span>
+          </div>
+        </header>
+
+        <main class="app-content">
+          <section class="view is-active" data-view="home" aria-label="首页">
+            <div class="view-scroll">
+              <article class="panel panel-showcase">
+                <div class="showcase-media">
+                  <img id="showcase-image" src="/assets/hero.jpg" alt="农业实景" />
+                  <div class="showcase-overlay">
+                    <span id="showcase-tag">农业实景</span>
+                    <h2 id="showcase-title">本草智链农业场景中心</h2>
+                    <p id="showcase-meta">多产区联动 · 实时内容流 · 农户经营协同</p>
+                  </div>
+                </div>
+                <div class="showcase-strip" id="showcase-strip"></div>
+              </article>
+
+              <article class="panel panel-command">
+                <header class="panel-head">
+                  <h2>企业驾驶舱</h2>
+                  <span>实时策略同步</span>
+                </header>
+                <div class="command-pill-row" id="command-pill-row"></div>
+                <div class="command-timeline" id="command-timeline"></div>
+              </article>
+
+              <article class="panel panel-home">
+                <header class="panel-head">
+                  <h2>首页入口</h2>
+                  <span id="home-layout-hint">顶部 4 + 底部 5</span>
+                </header>
+
+                <div class="icon-zone">
+                  <h3>高频入口</h3>
+                  <div class="icon-grid top-grid" id="home-top-grid"></div>
+                </div>
+
+                <div class="icon-zone">
+                  <h3>核心功能</h3>
+                  <div class="icon-grid bottom-grid" id="home-bottom-grid"></div>
+                </div>
+
+                <div class="icon-zone" id="home-more-wrap" hidden>
+                  <h3>更多入口</h3>
+                  <div class="more-row" id="home-more-row"></div>
+                </div>
+              </article>
+
+              <article class="panel panel-feed">
+                <header class="panel-head">
+                  <h2>直播与视频流</h2>
+                  <span>实时轮播</span>
+                </header>
+                <div class="home-feed" id="home-feed"></div>
+                <div class="feed-dots" id="home-feed-dots"></div>
+              </article>
+
+              <article class="panel panel-media">
+                <header class="panel-head">
+                  <h2>实景媒体墙</h2>
+                  <span>四路实景视频</span>
+                </header>
+                <div class="media-wall" id="media-wall"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="orbit" aria-label="星云入口">
+            <div class="view-scroll">
+              <article class="panel panel-orbit">
+                <header class="panel-head">
+                  <h2>功能星云</h2>
+                  <span>AI 智能中枢</span>
+                </header>
+
+                <div class="orbit-stage">
+                  <img class="orbit-bg-photo" id="orbit-bg-photo" src="/assets/farm-aerial.jpg" alt="产区实景背景" />
+                  <article class="ai-window" id="orbit-ai-window">
+                    <div class="ai-window-head">
+                      <span id="orbit-ai-platform">--</span>
+                      <i>AI CORE</i>
+                    </div>
+                    <h3 id="orbit-ai-title">AI入口</h3>
+                    <p id="orbit-ai-summary">--</p>
+                    <div class="ai-tag-row" id="orbit-ai-tags"></div>
+                    <div class="ai-kpi-row" id="orbit-ai-kpis"></div>
+                    <div class="ai-action-row">
+                      <button class="ai-btn primary" type="button" id="orbit-ai-open">查看项目详情</button>
+                      <button class="ai-btn" type="button" id="orbit-ai-run">AI流程预览</button>
+                    </div>
+                  </article>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="market" aria-label="产区动态">
+            <div class="view-scroll">
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>产区动态价格</h2>
+                  <span>真实采集样本</span>
+                </header>
+                <canvas id="price-chart" width="390" height="176" aria-label="价格趋势"></canvas>
+                <div class="stat-row">
+                  <span>均价 <strong id="market-avg">--</strong></span>
+                  <span>最高 <strong id="market-max">--</strong></span>
+                  <span>最低 <strong id="market-min">--</strong></span>
+                </div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>价格走势图</h2>
+                  <span>折线趋势</span>
+                </header>
+                <canvas id="trend-chart" width="390" height="176" aria-label="价格走势图"></canvas>
+                <p class="note" id="trend-note">等待数据...</p>
+              </article>
+
+              <article class="panel panel-history">
+                <header class="panel-head">
+                  <h2>历史价格对比</h2>
+                  <span>2021-2026</span>
+                </header>
+                <div class="history-table-wrap">
+                  <table class="history-table" aria-label="历史价格对比表">
+                    <thead>
+                      <tr>
+                        <th>年份</th>
+                        <th>均价(元/kg)</th>
+                        <th>峰值</th>
+                        <th>低值</th>
+                        <th>同比</th>
+                      </tr>
+                    </thead>
+                    <tbody id="history-table-body"></tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>品类热度</h2>
+                  <span>按真实价格计算</span>
+                </header>
+                <div class="heat-list" id="heat-list"></div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>成交量</h2>
+                  <span>动态变化</span>
+                </header>
+                <canvas id="volume-chart" width="390" height="150" aria-label="成交量趋势"></canvas>
+                <p class="note" id="volume-note">等待数据...</p>
+                <div class="stat-row solo">
+                  <span>峰值成交量 <strong id="market-volume-peak">--</strong></span>
+                </div>
+              </article>
+
+              <article class="panel panel-forecast">
+                <header class="panel-head">
+                  <h2>预售预测</h2>
+                  <span>基于产区动态</span>
+                </header>
+                <div class="forecast-table-wrap">
+                  <table class="forecast-table" aria-label="预售预测表">
+                    <thead>
+                      <tr>
+                        <th>各产区/市场</th>
+                        <th>预测结果（元/公斤）</th>
+                      </tr>
+                    </thead>
+                    <tbody id="presale-table-body"></tbody>
+                  </table>
+                </div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>产区动态</h2>
+                  <span>你提供的真实信息</span>
+                </header>
+                <div class="region-list" id="region-list"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="module" aria-label="项目台">
+            <div class="view-scroll">
+              <article class="panel">
+                <header class="panel-head">
+                  <h2 id="module-title">--</h2>
+                  <span id="module-section">--</span>
+                </header>
+                <p class="summary" id="module-summary">--</p>
+                <div class="kpi-grid" id="module-kpis"></div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>功能选择</h2>
+                  <span>全量可切换</span>
+                </header>
+                <div class="selector-row" id="module-selector"></div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>核心能力说明</h2>
+                  <span id="module-run-state">点击查看</span>
+                </header>
+                <div class="cap-grid" id="module-cap-grid"></div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>流程链路</h2>
+                  <span>自动高亮</span>
+                </header>
+                <ol class="workflow" id="module-workflow"></ol>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>服务动态</h2>
+                  <span>实时更新</span>
+                </header>
+                <div class="log-console-head">
+                  <span>PROJECT FEED</span>
+                  <i>LIVE</i>
+                </div>
+                <div class="live-log" id="module-live-log"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" data-view="mine" aria-label="我的">
+            <div class="view-scroll">
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>我的服务</h2>
+                  <span>一键进入</span>
+                </header>
+                <div class="mine-grid" id="mine-grid"></div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>建议入口</h2>
+                  <span>推荐下一步</span>
+                </header>
+                <div class="tips" id="mine-tips"></div>
+              </article>
+
+              <article class="panel">
+                <header class="panel-head">
+                  <h2>产区图集</h2>
+                  <span>真实拍摄素材</span>
+                </header>
+                <div class="photo-rail" id="photo-rail"></div>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <nav class="tabbar" id="tabbar" aria-label="底部导航">
+          <button class="tab is-active" data-tab="home"><i>首</i><span>首页</span></button>
+          <button class="tab" data-tab="orbit"><i>星</i><span>星云</span></button>
+          <button class="tab" data-tab="market"><i>产</i><span>产区</span></button>
+          <button class="tab" data-tab="module"><i>项</i><span>项目台</span></button>
+          <button class="tab" data-tab="mine"><i>我</i><span>我的</span></button>
+        </nav>
+      </article>
+    </div>
+
+    <div class="sheet" id="module-sheet" hidden>
+      <div class="sheet-mask" data-close-sheet></div>
+      <article class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+        <button class="sheet-close" type="button" data-close-sheet>关闭</button>
+        <span id="sheet-platform">--</span>
+        <h3 id="sheet-title">--</h3>
+        <p id="sheet-summary">--</p>
+
+        <div class="sheet-kpis" id="sheet-kpis"></div>
+
+        <div class="sheet-layout">
+          <section class="sheet-block">
+            <h4>能力清单</h4>
+            <div class="sheet-menu-list" id="sheet-menu-list"></div>
+          </section>
+
+          <section class="sheet-block">
+            <h4>能力详情</h4>
+            <div class="sheet-sim-card" id="sheet-sim-card"></div>
+            <div class="sheet-actions">
+              <button class="sheet-btn primary" type="button" data-sheet-run>查看流程</button>
+              <button class="sheet-btn" type="button" data-sheet-next>切换能力</button>
+            </div>
+            <div class="sheet-log" id="sheet-log"></div>
+          </section>
+        </div>
+      </article>
+    </div>
+
+    <script src="/menu-data.js"></script>
+    <script src="/flagship.js"></script>
+  </body>
+</html>

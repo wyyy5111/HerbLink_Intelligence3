@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(npx prisma migrate:*)",
+      "Bash(lsof:*)",
+      "Bash(curl:*)",
+      "Bash(jq . curl -s http://localhost:3000/api/market/prices)",
+      "Bash(python3:*)",
+      "Bash(xargs kill:*)",
+      "Bash(kill:*)",
+      "Bash(npm run dev)",
+      "Bash(open:*)",
+      "Bash(ls:*)",
+      "Bash(npm run build:*)",
+      "Bash(chmod:*)"
+    ]
+  }
+}
