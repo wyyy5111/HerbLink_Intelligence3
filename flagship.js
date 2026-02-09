@@ -40,18 +40,18 @@
 
   const homeFeeds = {
     farmer: [
-      { type: "直播", title: "岷县当归采收现场", meta: "在线 2,348 · 成交 126 单", thumb: "/assets/hero.jpg" },
-      { type: "视频", title: "川贝母病害识别实拍", meta: "播放 13,241 次", thumb: "/assets/herb.jpg" },
-      { type: "直播", title: "专家连线：水肥管理", meta: "在线 1,873 · 互动 4,912", thumb: "/assets/tractor.jpg" },
-      { type: "视频", title: "预售锁价实战教学", meta: "播放 9,423 次", thumb: "/assets/panorama.jpg" },
-      { type: "直播", title: "文山三七分级展示", meta: "在线 3,005 · 加购 2,104", thumb: "/assets/farm-aerial.jpg" }
+      { type: "直播", title: "岷县当归采收现场", meta: "在线 2,348 · 成交 126 单", thumb: "assets/hero.jpg" },
+      { type: "视频", title: "川贝母病害识别实拍", meta: "播放 13,241 次", thumb: "assets/herb.jpg" },
+      { type: "直播", title: "专家连线：水肥管理", meta: "在线 1,873 · 互动 4,912", thumb: "assets/tractor.jpg" },
+      { type: "视频", title: "预售锁价实战教学", meta: "播放 9,423 次", thumb: "assets/panorama.jpg" },
+      { type: "直播", title: "文山三七分级展示", meta: "在线 3,005 · 加购 2,104", thumb: "assets/farm-aerial.jpg" }
     ],
     client: [
-      { type: "直播", title: "道地药材溯源专场", meta: "在线 3,006 · 加购 2,104", thumb: "/assets/farm-aerial.jpg" },
-      { type: "视频", title: "拍照鉴真伪操作示范", meta: "播放 18,205 次", thumb: "/assets/product.jpg" },
-      { type: "直播", title: "健康调理选品答疑", meta: "在线 2,461 · 下单 731", thumb: "/assets/base.jpg" },
-      { type: "视频", title: "认领农场权益说明", meta: "播放 6,832 次", thumb: "/assets/panorama.jpg" },
-      { type: "直播", title: "福利日直播秒杀", meta: "在线 1,908 · 成交 609 单", thumb: "/assets/hero.jpg" }
+      { type: "直播", title: "道地药材溯源专场", meta: "在线 3,006 · 加购 2,104", thumb: "assets/farm-aerial.jpg" },
+      { type: "视频", title: "拍照鉴真伪操作示范", meta: "播放 18,205 次", thumb: "assets/product.jpg" },
+      { type: "直播", title: "健康调理选品答疑", meta: "在线 2,461 · 下单 731", thumb: "assets/base.jpg" },
+      { type: "视频", title: "认领农场权益说明", meta: "播放 6,832 次", thumb: "assets/panorama.jpg" },
+      { type: "直播", title: "福利日直播秒杀", meta: "在线 1,908 · 成交 609 单", thumb: "assets/hero.jpg" }
     ]
   };
 
@@ -93,7 +93,7 @@
   const realVisuals = {
     farmer: {
       showcase: {
-        image: "/assets/hero.jpg",
+        image: "assets/hero.jpg",
         tag: "农户端实景",
         title: "岷县基地全日作业联动",
         meta: "采收、分级、预售、物流全链实时协同"
@@ -103,51 +103,51 @@
         { label: "今日直播", value: "1,280" },
         { label: "预售履约", value: "98.4%" }
       ],
-      orbitImage: "/assets/farm-aerial.jpg",
+      orbitImage: "assets/farm-aerial.jpg",
       media: [
         {
           kind: "video",
           style: "aerial",
           title: "玉米长势巡检航拍",
           desc: "无人机巡检 · 长势识别与风险热区标注",
-          src: "/assets/corn-monitoring.webm",
-          poster: "/assets/farm-aerial.jpg"
+          src: "assets/corn-monitoring.webm",
+          poster: "assets/farm-aerial.jpg"
         },
         {
           kind: "video",
           style: "process",
           title: "椰材加工工位实录",
           desc: "初加工流水线 · 产线质控联动",
-          src: "/assets/coconut-processing.webm",
-          poster: "/assets/base.jpg"
+          src: "assets/coconut-processing.webm",
+          poster: "assets/base.jpg"
         },
         {
           kind: "video",
           style: "field",
           title: "河谷农田作业镜头",
           desc: "地块实景采收 · 物流准备协同",
-          src: "/assets/rio-grande-agriculture.webm",
-          poster: "/assets/panorama.jpg"
+          src: "assets/rio-grande-agriculture.webm",
+          poster: "assets/panorama.jpg"
         },
         {
           kind: "video",
           style: "landscape",
           title: "广域农场全景巡航",
           desc: "跨地块调度 · 经营全局监控",
-          src: "/assets/western-australia-agriculture.webm",
-          poster: "/assets/hero.jpg"
+          src: "assets/western-australia-agriculture.webm",
+          poster: "assets/hero.jpg"
         }
       ],
       gallery: [
-        { src: "/assets/farm-aerial.jpg", title: "产区航拍总览" },
-        { src: "/assets/panorama.jpg", title: "农场全景实拍" },
-        { src: "/assets/hero.jpg", title: "采收现场纪实" },
-        { src: "/assets/tractor.jpg", title: "设备作业场景" }
+        { src: "assets/farm-aerial.jpg", title: "产区航拍总览" },
+        { src: "assets/panorama.jpg", title: "农场全景实拍" },
+        { src: "assets/hero.jpg", title: "采收现场纪实" },
+        { src: "assets/tractor.jpg", title: "设备作业场景" }
       ]
     },
     client: {
       showcase: {
-        image: "/assets/product.jpg",
+        image: "assets/product.jpg",
         tag: "客户端实景",
         title: "可信消费与溯源场景",
         meta: "拍照鉴真伪、选品推荐、福利活动一体联动"
@@ -157,46 +157,46 @@
         { label: "商城转化", value: "18.6%" },
         { label: "鉴真伪准确率", value: "98.9%" }
       ],
-      orbitImage: "/assets/base.jpg",
+      orbitImage: "assets/base.jpg",
       media: [
         {
           kind: "video",
           style: "macro",
           title: "重点地块质量巡查",
           desc: "细节放大巡检 · 异常识别回传",
-          src: "/assets/corn-monitoring-zoom.webm",
-          poster: "/assets/base.jpg"
+          src: "assets/corn-monitoring-zoom.webm",
+          poster: "assets/base.jpg"
         },
         {
           kind: "video",
           style: "process",
           title: "药材初加工流程实拍",
           desc: "分拣与加工联动 · 质量全程留痕",
-          src: "/assets/coconut-processing.webm",
-          poster: "/assets/product.jpg"
+          src: "assets/coconut-processing.webm",
+          poster: "assets/product.jpg"
         },
         {
           kind: "video",
           style: "field",
           title: "产区与流通场景联动",
           desc: "地块到渠道 · 协同履约追踪",
-          src: "/assets/rio-grande-agriculture.webm",
-          poster: "/assets/farm-aerial.jpg"
+          src: "assets/rio-grande-agriculture.webm",
+          poster: "assets/farm-aerial.jpg"
         },
         {
           kind: "video",
           style: "landscape",
           title: "大规模农场全景监控",
           desc: "多地块并行管理 · 场景总览回放",
-          src: "/assets/western-australia-agriculture.webm",
-          poster: "/assets/base.jpg"
+          src: "assets/western-australia-agriculture.webm",
+          poster: "assets/base.jpg"
         }
       ],
       gallery: [
-        { src: "/assets/product.jpg", title: "消费端样品展示" },
-        { src: "/assets/base.jpg", title: "基地设施实景" },
-        { src: "/assets/panorama.jpg", title: "产区实景图" },
-        { src: "/assets/herb.jpg", title: "药材细节图集" }
+        { src: "assets/product.jpg", title: "消费端样品展示" },
+        { src: "assets/base.jpg", title: "基地设施实景" },
+        { src: "assets/panorama.jpg", title: "产区实景图" },
+        { src: "assets/herb.jpg", title: "药材细节图集" }
       ]
     }
   };
@@ -574,7 +574,7 @@
         (feed) => `
           <article class="feed-card">
             <div class="feed-thumb">
-              <img src="${feed.thumb || "/assets/hero.jpg"}" alt="${escapeHtml(feed.title)}" loading="lazy" />
+              <img src="${feed.thumb || "assets/hero.jpg"}" alt="${escapeHtml(feed.title)}" loading="lazy" />
               <span class="feed-kind">${escapeHtml(feed.type)}</span>
             </div>
             <div class="feed-meta">
